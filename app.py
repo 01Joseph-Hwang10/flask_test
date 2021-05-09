@@ -1,4 +1,5 @@
 from flask import Flask, request, Response, redirect, url_for
+import json
 
 app = Flask(__name__)
 
@@ -9,11 +10,15 @@ def root():
 
 @app.route('/test', methods=["GET","POST"])
 def api():
-    print(request.form)
-    data = {
-        "data": "some value"
-    }
-    return Response(response=data, status=200)
+    if request.method == "POST":
+        print(request.form)
+        print(request.files)
+        data = {
+            "data": str(request.form['data'])
+        }
+    else:
+        data = "You've requested with get method"
+    return Response(response=json.dumps(data), status=200)
 
 
 if __name__ == "__main__":
