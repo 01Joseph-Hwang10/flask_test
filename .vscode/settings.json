@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "/home/josep/.local/share/virtualenvs/flask_test-MZSDGsgF/lib/python3.8/site-packages/",
+    ]
+}
