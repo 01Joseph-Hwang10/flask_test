@@ -5,8 +5,14 @@ name = "pypi"
 
 [packages]
 flask = "*"
+bs4 = "*"
+markdown = "*"
 
 [dev-packages]
+black = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
