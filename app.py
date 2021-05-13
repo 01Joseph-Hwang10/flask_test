@@ -1,7 +1,10 @@
+import io
 from flask import Flask, request, Response, redirect, url_for
+from werkzeug.utils import format_string
 from bs4 import BeautifulSoup
 import markdown
 from flask.helpers import send_file
+from PIL import Image, ImageDraw
 
 app = Flask(__name__)
 
@@ -24,9 +27,15 @@ def api():
 
 @app.route("/image", methods=["GET"])
 def get_image():
-    return Response(
-        response=open("./static/person-icon.png", "rb"), status=200, mimetype="image/*"
-    )
+    im = Image.new("L", size=(100, 100))
+    draw = ImageDraw.Draw(im)
+    draw.line((0, 0) + im.size, fill=128)
+    draw.line((0, im.size[1], im.size[0], 0), fill=128)
+    fp = io.BytesIO()
+    im.save(fp, format="PNG")
+    fp = fp.getvalue()
+    print(type(fp))
+    return Response(response=fp, status=200, mimetype="image/*")
     # return Response(response=json.dumps("Got image successful"), status=200)
 
 
