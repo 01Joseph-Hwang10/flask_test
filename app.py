@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def root():
-    return redirect(url_for("api"))
+    return "This is root page"
 
 
 @app.route("/test", methods=["GET", "POST"])
@@ -24,7 +24,9 @@ def api():
 
 @app.route("/image", methods=["GET"])
 def get_image():
-    return send_file(open("./static/person-icon.png", "rb"), mimetype="image/*")
+    return Response(
+        response=open("./static/person-icon.png", "rb"), status=200, mimetype="image/*"
+    )
     # return Response(response=json.dumps("Got image successful"), status=200)
 
 
