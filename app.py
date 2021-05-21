@@ -73,5 +73,19 @@ def get_markdown():
     return Response(response=converted, status=200, mimetype="text/html")
 
 
+from flask_apscheduler import APScheduler
+
+scheduler = APScheduler()
+scheduler.api_enabled = True
+scheduler.init_app(app)
+
+
+@scheduler.task("interval", seconds=3, id="test_1")
+def job1():
+    print("The job is running...")
+
+
+scheduler.start()
+
 if __name__ == "__main__":
     app.run(debug=True)

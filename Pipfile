@@ -8,6 +8,7 @@ flask = "*"
 bs4 = "*"
 markdown = "*"
 pillow = "*"
+flask-apscheduler = "*"
 
 [dev-packages]
 black = "*"
