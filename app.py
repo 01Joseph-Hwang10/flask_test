@@ -5,13 +5,12 @@ from bs4 import BeautifulSoup
 import markdown
 from flask.helpers import send_file
 from PIL import Image, ImageDraw
+import root
 
 app = Flask(__name__)
 
 
-@app.route("/", methods=["GET"])
-def root():
-    return "This is root page"
+app.register_blueprint(root.bp)
 
 
 @app.route("/test", methods=["GET", "POST"])
